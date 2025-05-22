@@ -15,7 +15,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
     min-height: 100vh;
     position: relative;
     overflow: hidden;
@@ -44,20 +44,52 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    overflow: hidden;
 }
 
 .shape {
     position: absolute;
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     backdrop-filter: blur(5px);
     border-radius: 50%;
     animation: float 20s infinite;
 }
 
-.shape:nth-child(1) { width: 100px; height: 100px; left: 10%; top: 20%; animation-delay: 0s; }
-.shape:nth-child(2) { width: 150px; height: 150px; right: 15%; top: 40%; animation-delay: -5s; }
-.shape:nth-child(3) { width: 80px; height: 80px; left: 50%; bottom: 30%; animation-delay: -10s; }
-.shape:nth-child(4) { width: 120px; height: 120px; right: 30%; bottom: 20%; animation-delay: -15s; }
+.shape:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    left: 10%;
+    top: 20%;
+    animation-delay: 0s;
+    background: linear-gradient(135deg, rgba(57, 181, 74, 0.2), rgba(46, 102, 167, 0.2));
+}
+
+.shape:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    right: 15%;
+    top: 40%;
+    animation-delay: -5s;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(57, 181, 74, 0.2));
+}
+
+.shape:nth-child(3) {
+    width: 150px;
+    height: 150px;
+    left: 50%;
+    bottom: 30%;
+    animation-delay: -10s;
+    background: linear-gradient(135deg, rgba(46, 102, 167, 0.2), rgba(255, 140, 0, 0.2));
+}
+
+.shape:nth-child(4) {
+    width: 250px;
+    height: 250px;
+    right: 30%;
+    bottom: 20%;
+    animation-delay: -15s;
+    background: linear-gradient(135deg, rgba(57, 181, 74, 0.2), rgba(255, 140, 0, 0.2));
+}
 
 @keyframes float {
     0% { transform: translate(0, 0) rotate(0deg) scale(1); }
@@ -296,7 +328,7 @@ body::before {
 .map-img {
     width: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     
 }
 
@@ -361,7 +393,7 @@ body::before {
     padding: 20px;
     max-width: 1800px;
     width: 90vw;
-    height: 80vh;
+    height: 75vh;
 }
 
 .tables-window,
