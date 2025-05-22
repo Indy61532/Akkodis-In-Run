@@ -1,5 +1,5 @@
 // Najdeme elementy
-const map = document.querySelector('.map');
+const map = document.querySelector('.map-window');
 const mapImg = document.querySelector('.map-img');
 
 // Funkce pro nastavení zoomu na základě pozice kurzoru
