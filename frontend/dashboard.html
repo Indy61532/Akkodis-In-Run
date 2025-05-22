@@ -8,64 +8,121 @@
 </head>
 <body>
     <div class="main-conteiner center-screen">
-        <div class="grid">
-            <div class="scoreboard">
-                <div class="scoreboard-other">
+        <div class="dashboard-grid">
+            <!-- Tables Window -->
+            <div class="tables-window">
+                <div class="scoreboard-section">
                     <h2>Top Runners</h2>
-                    <div class="board">
-                        <div class="div1">1.</div>
-                        <div class="div2">2.</div>
-                        <div class="div3">3.</div>
-                        <div class="div4">4.</div>
-                        <div class="div5">5.</div>
-                        <div class="div6">Name</div>
-                        <div class="div7">Name</div>
-                        <div class="div8">Name</div>
-                        <div class="div9">Name</div>
-                        <div class="div10">Name</div>
-                        <div class="div11">Time</div>
-                        <div class="div12">Time</div>
-                        <div class="div13">Time</div>
-                        <div class="div14">Time</div>
-                        <div class="div15">Time</div>
-                        <div class="div16">Distadsdsdsdssdsdddsnce</div>
-                        <div class="div17">Distance</div>
-                        <div class="div18">Distance</div>
-                        <div class="div19">Distance</div>
-                        <div class="div20">Distance</div>
-                    </div>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Time</th>
+                                <th>Distance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="gold">
+                                <td>1.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr class="silver">
+                                <td>2.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr class="bronze">
+                                <td>3.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="scoreboard-other">
-                    <h2>my top runns</h2>
-                    <div class="board">
-                        <div class="div1">1.</div>
-                        <div class="div2">2.</div>
-                        <div class="div3">3.</div>
-                        <div class="div4">4.</div>
-                        <div class="div5">5.</div>
-                        <div class="div6">Name</div>
-                        <div class="div7">Name</div>
-                        <div class="div8">Name</div>
-                        <div class="div9">Name</div>
-                        <div class="div10">Name</div>
-                        <div class="div11">Time</div>
-                        <div class="div12">Time</div>
-                        <div class="div13">Time</div>
-                        <div class="div14">Time</div>
-                        <div class="div15">Time</div>
-                        <div class="div16">Distadsdsdsdssdsdddsnce</div>
-                        <div class="div17">Distance</div>
-                        <div class="div18">Distance</div>
-                        <div class="div19">Distance</div>
-                        <div class="div20">Distance</div>
-                    </div>
+
+                <div class="scoreboard-section">
+                    <h2>My Top Runs</h2>
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Time</th>
+                                <th>Distance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="gold">
+                                <td>1.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr class="silver">
+                                <td>2.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr class="bronze">
+                                <td>3.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>Name</td>
+                                <td>Time</td>
+                                <td>Distance</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="your-score">
-                <div class="distance-run">100000 km</div> <div class="time-run"> 100 h</div> <div class="runns">Runs: 99</div>
+
+            <!-- Map Window -->
+            <div class="map-window">
+                <img src="/frontend/images/world_map.svg" alt="World Map" class="map-img">
             </div>
-            <div class="map center">
-                <img src="/frontend/images/world_map.svg" alt="" class="map-img">
+
+            <!-- Stats Window -->
+            <div class="stats-window">
+                <div class="stat-card">
+                    <div class="stat-label">Total Distance</div>
+                    <div class="stat-value">100000 km</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Time</div>
+                    <div class="stat-value">100 h</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Runs</div>
+                    <div class="stat-value">99</div>
+                </div>
             </div>
         </div>
     </div>

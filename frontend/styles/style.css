@@ -328,15 +328,15 @@ body::before {
 }
 
 .grid {
-display: grid;
-grid-template-columns: 1fr 2fr;
-grid-template-rows: 1fr 3fr;
-grid-column-gap: 5px;
-grid-row-gap: 5px;
-max-width: 1300px;
-max-height: 900px;
-min-height: 90vh;
-min-width: 80vw;
+    display: grid;
+    grid-template-columns: 0.5fr 2.5fr;
+    grid-template-rows: 1fr 3fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    max-width: 1600px;
+    max-height: 900px;
+    min-height: 90vh;
+    min-width: 80vw;
 }
 
 .grid div{
@@ -433,3 +433,144 @@ width: 90%;
 .div18 { grid-area: 3 / 4 / 4 / 5; }
 .div19 { grid-area: 4 / 4 / 5 / 5; }
 .div20 { grid-area: 5 / 4 / 6 / 5; }
+
+/* Dashboard Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1300px;
+    width: 90vw;
+    height: 90vh;
+}
+
+/* Common styles for all windows */
+.tables-window,
+.map-window,
+.stats-window {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+}
+
+/* Tables Window */
+.tables-window {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.scoreboard-section {
+    flex: 1;
+}
+
+.scoreboard-section h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Table Styles */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.leaderboard-table thead th {
+    padding: 12px;
+    text-align: left;
+    color: var(--primary-dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.leaderboard-table tbody tr {
+    background: rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.leaderboard-table td {
+    padding: 12px;
+    border: none;
+}
+
+/* Medal colors for top 3 */
+.leaderboard-table tr.gold {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+}
+
+.leaderboard-table tr.silver {
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.1));
+}
+
+.leaderboard-table tr.bronze {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.1));
+}
+
+/* Map Window */
+.map-window {
+    grid-column: 2;
+    grid-row: 2;
+    overflow: hidden;
+    padding: 0;
+}
+
+.map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.map-window:hover .map-img {
+    transform: scale(1.05);
+}
+
+/* Stats Window */
+.stats-window {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-card {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
