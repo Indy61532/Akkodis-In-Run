@@ -312,3 +312,124 @@ body::before {
 }
 
 /**/
+
+.main-conteiner{
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+display: grid;
+grid-template-columns: 1fr 2fr;
+grid-template-rows: 1fr 3fr;
+grid-column-gap: 5px;
+grid-row-gap: 5px;
+max-width: 1300px;
+max-height: 900px;
+min-height: 90vh;
+min-width: 80vw;
+}
+
+.grid div{
+    background-color: var(--gray-light);
+}
+
+.scoreboard { grid-area: 1 / 1 / 3 / 2; }
+.your-scoreboard { grid-area: 1 / 2 / 2 / 3; }
+.map { grid-area: 2 / 2 / 3 / 3; }
+
+.scoreboard{
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.your-score{
+    border-radius: 0 15px 0 0;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 10%;
+    font-size: 1.5rem;
+}
+
+.map{
+    position: relative;
+    border-radius: 0 0 15px 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Obrázek mapy */
+.map-img {
+  width: 100%;
+  transition: transform 0.3s ease;
+  object-fit: cover;
+}
+
+.map:hover{
+    border: solid var(--white) 5px;
+}
+
+
+.scoreboard-other{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+padding: 0 5%;
+width: 100%;
+
+}
+
+.scoreboard-other h2{
+    font-size: 2rem;
+}
+
+.board div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 10%;
+        overflow: hidden;
+}
+
+.board{
+display: grid;
+grid-template-columns: 1fr repeat(3, 2.5fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+width: 90%;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 2 / 1 / 3 / 2; }
+.div3 { grid-area: 3 / 1 / 4 / 2; }
+.div4 { grid-area: 4 / 1 / 5 / 2; }
+.div5 { grid-area: 5 / 1 / 6 / 2; }
+.div6 { grid-area: 1 / 2 / 2 / 3; }
+.div7 { grid-area: 2 / 2 / 3 / 3; }
+.div8 { grid-area: 3 / 2 / 4 / 3; }
+.div9 { grid-area: 4 / 2 / 5 / 3; }
+.div10 { grid-area: 5 / 2 / 6 / 3; }
+.div11 { grid-area: 5 / 3 / 6 / 4; }
+.div12 { grid-area: 4 / 3 / 5 / 4; }
+.div13 { grid-area: 3 / 3 / 4 / 4; }
+.div14 { grid-area: 2 / 3 / 3 / 4; }
+.div15 { grid-area: 1 / 3 / 2 / 4; }
+.div16 { grid-area: 1 / 4 / 2 / 5; }
+.div17 { grid-area: 2 / 4 / 3 / 5; }
+.div18 { grid-area: 3 / 4 / 4 / 5; }
+.div19 { grid-area: 4 / 4 / 5 / 5; }
+.div20 { grid-area: 5 / 4 / 6 / 5; }
