@@ -14,6 +14,19 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
+    
+    <!-- Modal pro přidání běhu -->
+    <div id="add-run-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Přidat nový běh</h2>
+        <input type="number" id="distance" placeholder="Vzdálenost (km)" step="0.01" required>
+        <input type="time" id="run-time" placeholder="Doba běhu" required>
+        <input type="date" id="run-date" required>
+        <input type="url" id="image-url" placeholder="URL obrázku trasy">
+        <button id="submit-run">Uložit běh</button>
+    </div>
+    </div>
 
     <div class="main-conteiner center-screen">
         <div class="dashboard-grid">

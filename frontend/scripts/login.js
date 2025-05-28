@@ -1,3 +1,4 @@
+// Přepínání mezi formuláři
 document.getElementById('switch-to-register').addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById('login-form').classList.add('fade-out');
@@ -18,19 +19,59 @@ document.getElementById('switch-to-login').addEventListener('click', function(e)
     }, 500);
 });
 
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const authRoutes = require('./routes/authRoutes');
-const runRoutes = require('./routes/runRoutes');
+// Přihlášení uživatele
+document.querySelector('#login-form .form-button').addEventListener('click', async (e) => {
+    e.preventDefault();
 
-app.use(cors());
-app.use(express.json());
+    const email = document.querySelector('#login-form input[type="email"]').value;
+    const password = document.querySelector('#login-form input[type="password"]').value;
 
-app.use('/api/auth', authRoutes);
-app.use('/api/runs', runRoutes);
+    try {
+        const res = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server běží na portu ${PORT}`);
+        const data = await res.json();
+
+        if (res.ok) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('username', data.username);
+            window.location.href = 'dashboard.html';
+        } else {
+            alert(data.error || 'Chyba při přihlášení');
+        }
+    } catch (err) {
+        alert('Server nedostupný');
+    }
 });
+
+// Registrace uživatele
+document.querySelector('#register-form .form-button').addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const username = document.querySelector('#register-form input[type="text"]').value;
+    const email = document.querySelector('#register-form input[type="email"]').value;
+    const password = document.querySelector('#register-form input[type="password"]').value;
+
+    try {
+        const res = await fetch('http://localhost:3000/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            alert('Registrace úspěšná! Nyní se můžeš přihlásit.');
+            document.getElementById('switch-to-login').click(); // přepne na login formulář
+        } else {
+            alert(data.error || 'Chyba při registraci');
+        }
+    } catch (err) {
+        alert('Server nedostupný');
+    }
+});
+
