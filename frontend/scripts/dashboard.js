@@ -78,3 +78,34 @@ function getUserIdFromToken(token) {
     return null;
   }
 }
+
+document.getElementById('run-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const token = sessionStorage.getItem('token');
+  const distance_km = document.getElementById('distance').value;
+  const run_time = document.getElementById('run-time').value;
+  const run_date = document.getElementById('run-date').value;
+  const route_image = document.getElementById('route-image').value;
+
+  try {
+    const res = await fetch('http://localhost:3000/api/runs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ distance_km, run_time, run_date, route_image })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert('Běh uložen!');
+      // TODO: načti běhy a aktualizuj dashboard
+    } else {
+      alert(data.error || 'Chyba při ukládání běhu');
+    }
+  } catch (err) {
+    alert('Chyba spojení se serverem');
+  }
+});

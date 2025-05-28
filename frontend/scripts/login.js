@@ -51,9 +51,12 @@ document.querySelector('#login-form .form-button').addEventListener('click', asy
 document.querySelector('#register-form .form-button').addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const username = document.querySelector('#register-form input[type="text"]').value;
-    const email = document.querySelector('#register-form input[type="email"]').value;
-    const password = document.querySelector('#register-form input[type="password"]').value;
+const username = document.getElementById('reg-username').value;
+const email = document.getElementById('reg-email').value;
+const password = document.getElementById('reg-password').value;
+
+
+    console.log("Odesílám data:", { username, email, password }); // DEBUG
 
     try {
         const res = await fetch('http://localhost:3000/api/auth/register', {
@@ -66,12 +69,14 @@ document.querySelector('#register-form .form-button').addEventListener('click', 
 
         if (res.ok) {
             alert('Registrace úspěšná! Nyní se můžeš přihlásit.');
-            document.getElementById('switch-to-login').click(); // přepne na login formulář
+            document.getElementById('switch-to-login').click();
         } else {
             alert(data.error || 'Chyba při registraci');
         }
     } catch (err) {
         alert('Server nedostupný');
+        console.error(err);
     }
 });
+
 

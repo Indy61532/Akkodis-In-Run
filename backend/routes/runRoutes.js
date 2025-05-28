@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const runController = require('../controllers/runController');
+const verifyToken = require('../middleware/verifyToken');
 
-// API routy
-router.post('/', runController.addRun);         // přidání nového běhu
-router.get('/', runController.getAllRuns);      // všichni uživatelé a jejich běhy
-router.get('/:id', runController.getUserRuns);  // běhy konkrétního uživatele
+router.post('/', verifyToken, runController.addRun);
 
 module.exports = router;
