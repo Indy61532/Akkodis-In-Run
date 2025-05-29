@@ -15,7 +15,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    background: linear-gradient(135deg, #10144a, #0c8cdb);
     min-height: 100vh;
     position: relative;
     overflow: hidden;
@@ -61,16 +61,16 @@ body::before {
     left: 10%;
     top: 20%;
     animation-delay: 0s;
-    background: linear-gradient(135deg, rgba(57, 181, 74, 0.2), rgba(46, 102, 167, 0.2));
+    background: linear-gradient(135deg, rgba(226, 223, 40, 0.2), rgba(46, 102, 167, 0.2));
 }
 
 .shape:nth-child(2) {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     right: 15%;
-    top: 40%;
+    top: 30%;
     animation-delay: -5s;
-    background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(57, 181, 74, 0.2));
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(226, 223, 40, 0.2));
 }
 
 .shape:nth-child(3) {
@@ -83,12 +83,12 @@ body::before {
 }
 
 .shape:nth-child(4) {
-    width: 250px;
-    height: 250px;
+    width: 175px;
+    height: 175px;
     right: 30%;
     bottom: 20%;
     animation-delay: -15s;
-    background: linear-gradient(135deg, rgba(57, 181, 74, 0.2), rgba(255, 140, 0, 0.2));
+    background: linear-gradient(135deg, rgba(226, 223, 40, 0.2), rgba(255, 140, 0, 0.2));
 }
 
 @keyframes float {
@@ -398,7 +398,7 @@ body::before {
 
 .tables-window,
 .stats-window {
-    background: rgba(255, 255, 255, 0.9);
+    background: #1d2d5b6d;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -406,7 +406,7 @@ body::before {
 }
 
 .map-window{
-    background: rgba(255, 255, 255, 0.9);
+    background: #1d2d5b6d;
     border-radius: 15px;
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -432,7 +432,7 @@ body::before {
 }
 
 .scoreboard-section h2 {
-    color: var(--primary-dark);
+    color: var(--white);
     margin-bottom: 15px;
     font-size: 1.5rem;
     text-align: center;
@@ -447,19 +447,18 @@ body::before {
 .leaderboard-table thead th {
     padding: 12px;
     text-align: left;
-    color: var(--primary-dark);
+    color: var(--white);
     font-weight: 600;
     border-bottom: 2px solid var(--primary-light);
 }
 
 .leaderboard-table tbody tr {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.8);
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .leaderboard-table tbody tr:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.8);
+    transform: translateX(2px);
 }
 
 .leaderboard-table td {
@@ -468,15 +467,15 @@ body::before {
 }
 
 .leaderboard-table tr.gold {
-    background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0.5));
 }
 
 .leaderboard-table tr.silver {
-    background: linear-gradient(90deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.1));
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.8), rgba(192, 192, 192, 0.5));
 }
 
 .leaderboard-table tr.bronze {
-    background: linear-gradient(90deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.1));
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.8), rgba(205, 127, 50, 0.5));
 }
 
 .stats-window {
@@ -527,7 +526,7 @@ body::before {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    border: 2px dashed var(--accent-green) !important;
+    border: 2px dashed #1d2c5c !important;
     position: relative;
     overflow: hidden;
 }
@@ -535,7 +534,7 @@ body::before {
 .add-new-run:hover {
     transform: translateY(-8px) !important;
     box-shadow: 0 10px 20px rgba(57, 181, 74, 0.2);
-    border: 2px solid var(--accent-green) !important;
+    border: 2px solid #1d2c5c !important;
     background: linear-gradient(135deg, #f8fff9, #ffffff) !important;
 }
 
@@ -543,7 +542,7 @@ body::before {
     width: 32px;
     height: 32px;
     transition: all 0.3s ease;
-    filter: brightness(0) saturate(100%) invert(57%) sepia(83%) saturate(380%) hue-rotate(84deg) brightness(95%) contrast(89%);
+    filter: brightness(0) saturate(100%) invert(57%) sepia(83%) saturate(68%) hue-rotate(226deg) brightness(38%) contrast(89%);
 }
 
 .add-new-run:hover img {
@@ -552,7 +551,7 @@ body::before {
 
 .add-new-run .stat-value {
     font-size: 1.5rem;
-    color: var(--accent-green);
+    color: #1d2c5c;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -576,6 +575,7 @@ body::before {
 .add-new-run:hover::before {
     left: 100%;
 }
+
 
 .modal {
   position: fixed;
@@ -614,7 +614,7 @@ body::before {
 
 .modal-content button {
   padding: 10px;
-  background-color: var(--accent-green);
+  background-color: var(--primary-dark);
   color: white;
   border: none;
   border-radius: 5px;
