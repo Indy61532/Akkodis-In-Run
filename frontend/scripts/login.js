@@ -27,7 +27,7 @@ document.querySelector('#login-form .form-button').addEventListener('click', asy
     const password = document.querySelector('#login-form input[type="password"]').value;
 
     try {
-        const res = await fetch('https://akkodis-in-run-frontend.onrender.com//api/auth/login', {
+        const res = await fetch('https://akkodis-in-run.onrender.com//api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -59,7 +59,7 @@ const password = document.getElementById('reg-password').value;
     console.log("Odesílám data:", { username, email, password }); // DEBUG
 
     try {
-        const res = await fetch('https://akkodis-in-run-frontend.onrender.com//api/auth/register', {
+        const res = await fetch('https://akkodis-in-run.onrender.com//api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
