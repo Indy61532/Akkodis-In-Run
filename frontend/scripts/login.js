@@ -58,6 +58,7 @@ const password = document.getElementById('reg-password').value;
 
     console.log("Odesílám data:", { username, email, password }); // DEBUG
 
+    try {
         const res = await fetch('https://akkodis-in-run.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
