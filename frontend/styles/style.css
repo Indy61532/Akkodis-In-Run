@@ -629,4 +629,89 @@ body::before {
   cursor: pointer;
 }
 
+/* Responsive Design */
+@media screen and (max-width: 1680px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        width: 95vw;
+        height: auto;
+        min-height: unset;
+        padding: 10px;
+    }
+
+    .tables-window {
+        grid-column: 1;
+        grid-row: 2;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    .map-window {
+        display: none;
+    }
+
+    .stats-window {
+        grid-column: 1;
+        grid-row: 1;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+
+    .stat-card {
+        min-width: 150px;
+        flex: 1 1 calc(50% - 10px);
+    }
+
+    .scoreboard-section {
+        padding: 10px;
+    }
+
+    .leaderboard-table {
+        font-size: 0.9rem;
+    }
+
+    .leaderboard-table td,
+    .leaderboard-table th {
+        padding: 8px;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    .add-new-run .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 300px;
+    }
+}
+
+/* Additional mobile optimizations for even smaller screens */
+@media screen and (max-width: 480px) {
+    .stats-window {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .leaderboard-table {
+        font-size: 0.8rem;
+    }
+
+    .scoreboard-section h2 {
+        font-size: 1.2rem;
+    }
+}
+
 /*1680px*/
