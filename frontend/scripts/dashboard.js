@@ -26,7 +26,7 @@ closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
 const token = localStorage.getItem('token');
 
 // 📊 Načti statistiky
-fetch('https://akkodis-in-run.onrender.com/api/runs/stats', {
+fetch('https://akkodis-in-run-frontend.onrender.com//api/runs/stats', {
   headers: { Authorization: `Bearer ${token}` }
 })
   .then(res => res.json())
@@ -37,7 +37,7 @@ fetch('https://akkodis-in-run.onrender.com/api/runs/stats', {
   });
 
 // 🏃‍♂️ Načti moje top běhy
-fetch('https://akkodis-in-run.onrender.com/api/runs/my-top', {
+fetch('https://akkodis-in-run-frontend.onrender.com//api/runs/my-top', {
   headers: { Authorization: `Bearer ${token}` }
 })
   .then(res => res.json())
@@ -84,7 +84,7 @@ submitBtn.addEventListener('click', async () => {
   const route_image = document.getElementById('image-url').value;
 
   try {
-    const res = await fetch('https://akkodis-in-run.onrender.com/api/runs/', {
+    const res = await fetch('https://akkodis-in-run-frontend.onrender.com//api/runs/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ submitBtn.addEventListener('click', async () => {
 });
 
 // 🥇 Načti top běžce
-fetch('https://akkodis-in-run.onrender.com/api/runs/top', {
+fetch('https://akkodis-in-run-frontend.onrender.com//api/runs/top', {
   headers: { Authorization: `Bearer ${token}` }
 })
   .then(res => res.json())
