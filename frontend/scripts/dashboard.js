@@ -1,92 +1,87 @@
-// Najdeme elementy
+// 🌍 Zoom efekt na mapu
 const map = document.querySelector('.map-window');
 const mapImg = document.querySelector('.map-img');
 
-// Funkce pro nastavení zoomu na základě pozice kurzoru
 map.addEventListener('mousemove', (e) => {
   const mapRect = map.getBoundingClientRect();
   const mouseX = e.clientX - mapRect.left;
   const mouseY = e.clientY - mapRect.top;
-
-  // Změna bodu zvětšení obrázku podle pozice kurzoru
-  mapImg.style.transformOrigin = `${mouseX}px ${mouseY}px`; // Nastavení bodu zvětšení
-  mapImg.style.transform = 'scale(2)'; // Zvětšení obrázku
+  mapImg.style.transformOrigin = `${mouseX}px ${mouseY}px`;
+  mapImg.style.transform = 'scale(2)';
 });
 
-// Když kurzor opustí mapu, obrázek se vrátí zpět
 map.addEventListener('mouseleave', () => {
-  mapImg.style.transform = 'scale(1)'; // Resetuje zoom na obrázku
+  mapImg.style.transform = 'scale(1)';
 });
 
+// 🧾 Modal – otevření a zavření
 const modal = document.getElementById('add-run-modal');
 const openBtn = document.querySelector('.add-new-run');
 const closeBtn = document.querySelector('.close-button');
-const submitBtn = document.getElementById('submit-run');
 
-// Otevření modalu
-openBtn.addEventListener('click', () => {
-  modal.classList.remove('hidden');
-});
+openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
 
-// Zavření modalu
-closeBtn.addEventListener('click', () => {
-  modal.classList.add('hidden');
-});
+// 🔐 Token z localStorage
+const token = localStorage.getItem('token');
 
-// Odeslání běhu
-submitBtn.addEventListener('click', async () => {
-  const distance = document.getElementById('distance').value;
-  const runTime = document.getElementById('run-time').value;
-  const runDate = document.getElementById('run-date').value;
-  const imageUrl = document.getElementById('image-url').value;
-
-  const token = localStorage.getItem('token');
-  const userId = getUserIdFromToken(token); // potřebuješ funkci na dekódování nebo backend endpoint
-
-  const response = await fetch('http://localhost:3000/api/runs', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    body: JSON.stringify({
-      user_id: userId,
-      distance_km: parseFloat(distance),
-      run_time: runTime,
-      run_date: runDate,
-      route_image: imageUrl
-    })
+// 📊 Načti statistiky
+fetch('http://localhost:3000/api/runs/stats', {
+  headers: { Authorization: `Bearer ${token}` }
+})
+  .then(res => res.json())
+  .then(data => {
+    document.querySelector('.stat-distance').textContent = `${data.totalDistance} km`;
+    document.querySelector('.stat-time').textContent = `${data.totalTime} h`;
+    document.querySelector('.stat-runs').textContent = data.totalRuns;
   });
 
-  const data = await response.json();
+// 🏃‍♂️ Načti moje top běhy
+fetch('http://localhost:3000/api/runs/my-top', {
+  headers: { Authorization: `Bearer ${token}` }
+})
+  .then(res => res.json())
+  .then(runs => {
+    const table = document.querySelector('.my-top-runs tbody');
+    table.innerHTML = '';
+for (let i = 0; i < 5; i++) {
+  const row = document.createElement('tr');
 
-  if (response.ok) {
-    alert('Běh přidán!');
-    modal.classList.add('hidden');
-    location.reload();
+  // Přidání třídy podle pořadí
+  if (i === 0) row.classList.add('gold');
+  else if (i === 1) row.classList.add('silver');
+  else if (i === 2) row.classList.add('bronze');
+
+  if (runs[i]) {
+    row.innerHTML = `
+      <td>${i + 1}.</td>
+      <td>${runs[i].run_date}</td>
+      <td>${runs[i].run_time}</td>
+      <td>${parseFloat(runs[i].distance_km).toFixed(2)} km</td>
+    `;
   } else {
-    alert(data.error || 'Chyba při ukládání běhu');
+    row.innerHTML = `
+      <td>${i + 1}.</td>
+      <td>-----</td>
+      <td>-----</td>
+      <td>-----</td>
+    `;
   }
-});
 
-// (Volitelné) Funkce na dekódování tokenu bez backendu:
-function getUserIdFromToken(token) {
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.id;
-  } catch (e) {
-    return null;
-  }
+  table.appendChild(row);
 }
 
-document.getElementById('run-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
 
-  const token = sessionStorage.getItem('token');
+  });
+
+// ➕ Přidání běhu
+const submitBtn = document.getElementById('submit-run');
+
+submitBtn.addEventListener('click', async () => {
   const distance_km = document.getElementById('distance').value;
   const run_time = document.getElementById('run-time').value;
   const run_date = document.getElementById('run-date').value;
-  const route_image = document.getElementById('route-image').value;
+  const route_image = document.getElementById('image-url').value;
 
   try {
     const res = await fetch('http://localhost:3000/api/runs', {
@@ -101,7 +96,8 @@ document.getElementById('run-form').addEventListener('submit', async (e) => {
     const data = await res.json();
     if (res.ok) {
       alert('Běh uložen!');
-      // TODO: načti běhy a aktualizuj dashboard
+      modal.classList.add('hidden');
+      location.reload();
     } else {
       alert(data.error || 'Chyba při ukládání běhu');
     }
@@ -109,3 +105,42 @@ document.getElementById('run-form').addEventListener('submit', async (e) => {
     alert('Chyba spojení se serverem');
   }
 });
+
+// 🥇 Načti top běžce
+fetch('http://localhost:3000/api/runs/top', {
+  headers: { Authorization: `Bearer ${token}` }
+})
+  .then(res => res.json())
+  .then(runners => {
+    const table = document.querySelector('.leaderboard-table'); // tabulka s top běžci
+    const tbody = table.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    for (let i = 0; i < 5; i++) {
+      const row = document.createElement('tr');
+
+      if (i === 0) row.classList.add('gold');
+      else if (i === 1) row.classList.add('silver');
+      else if (i === 2) row.classList.add('bronze');
+
+      if (runners[i]) {
+        row.innerHTML = `
+          <td>${i + 1}.</td>
+          <td>${runners[i].username}</td>
+          <td>${runners[i].runs_count}</td>
+          <td>${parseFloat(runners[i].total_distance).toFixed(2)} km</td>
+        `;
+      } else {
+        row.innerHTML = `
+          <td>${i + 1}.</td>
+          <td>-----</td>
+          <td>-----</td>
+          <td>-----</td>
+        `;
+      }
+
+      tbody.appendChild(row);
+    }
+  })
+  .catch(err => console.error('❌ Chyba při načítání top běžců:', err));
+
