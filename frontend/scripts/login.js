@@ -66,14 +66,13 @@ const password = document.getElementById('reg-password').value;
         });
 
 
-        const data = await res.json();
+let data = {};
 
-        if (res.ok) {
-            alert('Registrace úspěšná! Nyní se můžeš přihlásit.');
-            document.getElementById('switch-to-login').click();
-        } else {
-            alert(data.error || 'Chyba při registraci');
-        }
+if (res.headers.get("content-type")?.includes("application/json")) {
+  data = await res.json();
+} else {
+  throw new Error('Backend nevrátil JSON!');
+}
     } catch (err) {
         alert('Server nedostupný');
         console.error(err);
