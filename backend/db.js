@@ -1,9 +1,14 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
+  user: 'postgres',
+  host: 'localhost',
+  database: 'akkodis_run',
+  password: 'admin',  // <- tady zadej heslo, které jsi nastavil při instalaci PostgreSQL
+  port: 5432,
 });
 
 
-module.exports = pool;
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+};

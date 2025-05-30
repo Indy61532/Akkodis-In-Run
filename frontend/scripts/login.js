@@ -27,7 +27,7 @@ document.querySelector('#login-form .form-button').addEventListener('click', asy
     const password = document.querySelector('#login-form input[type="password"]').value;
 
     try {
-        const res = await fetch('https://akkodis-in-run.onrender.com/api/auth/login', {
+        const res = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -59,20 +59,20 @@ const password = document.getElementById('reg-password').value;
     console.log("Odesílám data:", { username, email, password }); // DEBUG
 
     try {
-        const res = await fetch('https://akkodis-in-run.onrender.com//api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password })
+        const res = await fetch('http://localhost:3000/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
         });
 
+        const data = await res.json();
 
-let data = {};
-
-if (res.headers.get("content-type")?.includes("application/json")) {
-  data = await res.json();
-} else {
-  throw new Error('Backend nevrátil JSON!');
-}
+        if (res.ok) {
+            alert('Registrace úspěšná! Nyní se můžeš přihlásit.');
+            document.getElementById('switch-to-login').click();
+        } else {
+            alert(data.error || 'Chyba při registraci');
+        }
     } catch (err) {
         alert('Server nedostupný');
         console.error(err);
